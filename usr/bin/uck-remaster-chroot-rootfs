@@ -43,7 +43,7 @@ fi
 # REMASTER_HOME and REMASTER_DIR to be set!
 REMASTER_DIR="$REMASTER_HOME/remaster-root"
 . libraries/remaster-live-cd.sh 2>/dev/null ||
-. /usr/lib/uck/remaster-live-cd.sh 2>/dev/null ||
+. ../lib/uck/remaster-live-cd.sh 2>/dev/null ||
 failure "libraries not found"
 
 # Prepare rootfs, run command, clean rootfs

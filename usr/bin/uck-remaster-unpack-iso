@@ -58,7 +58,7 @@ fi
 ########
 
 . libraries/remaster-live-cd.sh 2>/dev/null ||
-	. /usr/lib/uck/remaster-live-cd.sh 2>/dev/null ||
+	. ../lib/uck/remaster-live-cd.sh 2>/dev/null ||
 	failure "libraries not found"
 
 ISO_REMASTER_DIR="$REMASTER_HOME/remaster-iso"

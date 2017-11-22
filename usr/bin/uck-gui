@@ -63,8 +63,8 @@ if [ -e libraries/gui.sh ]; then
 	SCRIPTS_DIR=`dirname "$0"`
 	LIBRARIES_DIR=$SCRIPTS_DIR/libraries
 else
-	SCRIPTS_DIR=/usr/bin
-	LIBRARIES_DIR=/usr/lib/uck/
+	SCRIPTS_DIR=.
+	LIBRARIES_DIR=../lib/uck/
 fi
 
 ############
@@ -74,7 +74,7 @@ fi
 if [ -e VERSION ]; then
 	VERSION=`cat VERSION`
 else
-	VERSION=`cat /usr/lib/uck/VERSION`
+	VERSION=`cat ../lib/uck/VERSION`
 fi
 
 rel="`lsb_release -is` `lsb_release -rs`"
