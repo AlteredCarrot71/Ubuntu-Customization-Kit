@@ -97,8 +97,8 @@ prepare_install || failure "Preparing installation failed, error=$?"
 PACKAGES_TO_INSTALL=""
 # Pattern to match all selected language packs:
 LANGPACKS_CONCATENATED=""
-# List of language related packages available in the repositories:
-REPO_LANGS=`apt-cache search "^language-" | sed 's/[ 	].*//'`
+# List of language related packages available in the repositories (excluding touch):
+REPO_LANGS=`apt-cache search "^language-" | sed 's/[ 	].*//' | grep -v touch`
 
 echo "Installing language packs ($LIVECD_LANGS)..."
 if [ -n "$LIVECD_LANGS" ]; then
