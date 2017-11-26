@@ -171,12 +171,18 @@ if [ `id -un` = "root" ] ; then
 	gui_failure "UCK GUI should not be run as root, please run again as a normal user. You will be asked for your password when administrator privileges are required."
 fi
 
-dialog_msgbox "Welcome" "$WELCOME_TEXT"
-RESULT=$?
+RESULT=1
+while [ $RESULT -eq 1 ]; do
+	dialog_msgbox "Welcome" "$WELCOME_TEXT"
+	RESULT=$?
 
-if [ $RESULT -ne 0 ] ; then
-	failure_user
-fi
+	if [ $RESULT -ne 0 ]; then
+		dialog_question "Confirm" "Are yout sure you want to quit?"
+		if [ $? -eq 0 ] ; then
+			failure_user
+		fi
+	fi
+done
 
 AVAILABLE_LANGUAGE_PACKS=`apt-cache pkgnames language-support | egrep '^language-support-.{2,7}$' | cut -b 18- | sort`
 if [ "$AVAILABLE_LANGUAGE_PACKS" == "" ]; then
