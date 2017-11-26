@@ -172,6 +172,11 @@ if [ `id -un` = "root" ] ; then
 fi
 
 dialog_msgbox "Welcome" "$WELCOME_TEXT"
+RESULT=$?
+
+if [ $RESULT -ne 0 ] ; then
+	failure_user
+fi
 
 AVAILABLE_LANGUAGE_PACKS=`apt-cache pkgnames language-support | egrep '^language-support-.{2,7}$' | cut -b 18- | sort`
 if [ "$AVAILABLE_LANGUAGE_PACKS" == "" ]; then
@@ -285,6 +290,11 @@ if [ $? -ne 0 ] ; then
 fi
 
 dialog_msgbox "Ready to build" "$PRE_START_TEXT"
+RESULT=$?
+
+if [ $RESULT -ne 0 ] ; then
+	failure_user
+fi
 
 echo "Preparing build environment..."
 if [ ! -e "$REMASTER_HOME" ]; then
