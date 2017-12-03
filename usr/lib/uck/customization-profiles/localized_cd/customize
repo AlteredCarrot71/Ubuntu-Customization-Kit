@@ -141,8 +141,8 @@ if [ "$RUN_MANUAL_CUSTOMIZATIONS" = "yes" ] ; then
 		CHOICE=`dialog_menu "Please choose customization action" "$CHOICE_CONSOLE" "$CHOICE_EXIT"`
 		RESULT=$?
 
-		if [ -z $CHOICE ] ; then
-			failure "Script cancelled by user"
+		if [ $RESULT -eq 0 ] ; then
+			failure_user
 		fi
 		#workaround for KDE bug (https://bugs.kde.org/show_bug.cgi?id=139025)
 		CHOICE=`echo "$CHOICE" | grep -v -i kwrited | tail -n1`
