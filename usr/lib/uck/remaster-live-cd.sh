@@ -509,7 +509,7 @@ function pack_rootfs()
 		fi
 		
 		#if mksquashfs version => 4.1 and guest's kernel => 2.6.30 we can enable xz compression
-		SQUASHFS_VERSION=`dpkg-query -p squashfs-tools | grep Version | cut -d ':' -f3 | cut -d '-' -f1`
+		SQUASHFS_VERSION=`dpkg-query -W "squashfs-tools" | cut -f2 | cut -d ':' -f2 | cut -d '-' -f1`
 		GUEST_KERNEL_VERSION=`ls /boot/config-* | sed 's/.*config-//' | cut -d '-' -f1 | sort -r | head -n1`
 		if [ `echo -e "${SQUASHFS_VERSION}\n4.2" | sort | head -n1` = "4.2" ]; then
 			if [ `echo -e "${GUEST_KERNEL_VERSION}\n2.6.30" | sort | head -n1` = "2.6.30" ]; then
