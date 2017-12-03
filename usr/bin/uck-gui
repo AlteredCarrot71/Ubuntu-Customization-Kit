@@ -280,19 +280,25 @@ while true; do
 	break
 done
 
-RUN_MANUAL_CUSTOMIZATIONS=`dialog_menu "Do you want to customize the CD manually during building (using package utilities, console, etc.)?" yes no`
-if [ $? -ne 0 ] ; then
-	failure_user
+dialog_question "Customization" "Do you want to customize the CD manually during building (using package utilities, console, etc.)?"
+if [ $? -eq 0 ] ; then
+	RUN_MANUAL_CUSTOMIZATIONS="yes"
+else
+	RUN_MANUAL_CUSTOMIZATIONS="no"
 fi
 
-REMOVE_WIN32_FILES=`dialog_menu $'Do you want to delete all windows-related files from the CD?\nThese are files that will appear when you use the CD under Windows (wubi, autorun.inf, etc.)' yes no`
-if [ $? -ne 0 ] ; then
-	failure_user
+dialog_question "Customization" "Do you want to delete all windows-related files from the CD?\nThese are files that will appear when you use the CD under Windows (wubi, autorun.inf, etc.)?"
+if [ $? -eq 0 ] ; then
+	REMOVE_WIN32_FILES="yes"
+else
+	REMOVE_WIN32_FILES="no"
 fi
 
-HYBRID=`dialog_menu $'Do you want to generate a hybrid image(ISO/USB)' yes no`
-if [ $? -ne 0 ] ; then
-	failure_user
+dialog_question "Customization" "Do you want to generate a hybrid image(ISO/USB)?"
+if [ $? -eq 0 ] ; then
+	HYBRID="yes"
+else
+	HYBRID="no"
 fi
 
 dialog_msgbox "Ready to build" "$PRE_START_TEXT"

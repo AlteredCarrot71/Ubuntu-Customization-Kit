@@ -123,7 +123,7 @@ if [ -e "$CUSTOMIZE_DIR/clean_desktop_manifest" ]; then
 fi
 
 if [ -e "$CUSTOMIZE_DIR/hybrid" ]; then
-	HYBRID="yes"
+	HYBRID=`cat "$CUSTOMIZE_DIR/hybrid"`
 fi
 
 $SCRIPTS_DIR/uck-remaster-clean "$REMASTER_HOME"
