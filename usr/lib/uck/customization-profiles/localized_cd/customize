@@ -24,6 +24,11 @@ function failure()
 	exit 1
 }
 
+function failure_user()
+{
+	failure "Script was cancelled by the user"
+}
+
 function prepare_install()
 {
 	#try 2 times to avoid slow proxies failures
@@ -141,8 +146,8 @@ if [ "$RUN_MANUAL_CUSTOMIZATIONS" = "yes" ] ; then
 		CHOICE=`dialog_menu "Please choose customization action" "$CHOICE_CONSOLE" "$CHOICE_EXIT"`
 		RESULT=$?
 
-		if [ $RESULT -eq 0 ] ; then
-			failure_user
+		if [ $RESULT -eq -1 ] ; then
+			failure_user 
 		fi
 		#workaround for KDE bug (https://bugs.kde.org/show_bug.cgi?id=139025)
 		CHOICE=`echo "$CHOICE" | grep -v -i kwrited | tail -n1`
